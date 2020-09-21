@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Your Timetable</string>
+    <string name="day_monday">Monday</string>
+    <string name="day_tuesday">Tuesday</string>
+    <string name="day_wednesday">Wednesday</string>
+    <string name="day_thursday">Thursday</string>
+    <string name="day_friday">Friday</string>
+    <string name="notify_settings">Notification settings</string>
+    <string name="course_settings">Select your course</string>
+    <string name="thread_settings">Select your thread</string>
+    <string name="lesson_history">Lesson history</string>
+</resources>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Твое расписание</string>
+    <string name="day_monday">Понедельник</string>
+    <string name="day_tuesday">Вторник</string>
+    <string name="day_wednesday">Среда</string>
+    <string name="day_thursday">Четверг</string>
+    <string name="day_friday">Пятница</string>
+    <string name="notify_settings">Настройка уведомлений</string>
+    <string name="course_settings">Выбери свой курс</string>
+    <string name="thread_settings">Выбери свое напрввление</string>
+    <string name="lesson_history">История занятий</string>
+</resources>
