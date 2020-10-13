@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1066138798947",
+    "firebase_url": "https://ulsu-timetable.firebaseio.com",
+    "project_id": "ulsu-timetable",
+    "storage_bucket": "ulsu-timetable.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1066138798947:android:9825c49240d77eb7672156",
+        "android_client_info": {
+          "package_name": "ru.zadli.ulsu_collaborating.timetable"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1066138798947-tpvlsd6nfri1dksklutst31ki410jjq1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ru.zadli.ulsu_collaborating.timetable",
+            "certificate_hash": "97f956fd7ab33d7ee3a53760b7142881dc35a08a"
+          }
+        },
+        {
+          "client_id": "1066138798947-9b8ugpoov51fobbu2p1ouok6err0k838.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsNzAVzoj8ETXd5pRKlm2ZwqN5pFm23s4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1066138798947-9b8ugpoov51fobbu2p1ouok6err0k838.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

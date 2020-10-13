@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+
 import ru.zadli.ulsu_collaborating.timetable.fragments.SettingsFragment;
 
 
@@ -15,12 +16,13 @@ public class SettingsPageAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return(1);
+        return (1);
     }
+
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        return(SettingsFragment.newInstance(position));
+        return (SettingsFragment.newInstance(position));
     }
 
 }

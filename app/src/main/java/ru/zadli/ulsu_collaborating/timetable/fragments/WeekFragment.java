@@ -1,36 +1,37 @@
 package ru.zadli.ulsu_collaborating.timetable.fragments;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+
+import com.google.firebase.database.DataSnapshot;
+
 import java.util.Objects;
+
 import ru.zadli.ulsu_collaborating.timetable.MainActivity;
 import ru.zadli.ulsu_collaborating.timetable.R;
-import ru.zadli.ulsu_collaborating.timetable.adapters.RVAdapter;
+import ru.zadli.ulsu_collaborating.timetable.adapters.WeekRVAdapter;
 
 public class WeekFragment extends Fragment {
 
     private int pageNumber;
 
+    public WeekFragment() {
+    }
+
     public static WeekFragment newInstance(final int page) {
         WeekFragment fragment = new WeekFragment();
-        Bundle args=new Bundle();
+        Bundle args = new Bundle();
         args.putInt("num", page);
         fragment.setArguments(args);
         return fragment;
-    }
-
-    public WeekFragment() {
     }
 
     @Override
@@ -40,109 +41,38 @@ public class WeekFragment extends Fragment {
 
     }
 
-    @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         MainActivity activity = (MainActivity) getActivity();
-        JSONArray[] data = Objects.requireNonNull(activity).get_data();
-        final View result=inflater.inflate(R.layout.page_layout, container, false);
-        final RecyclerView monday = result.findViewById(R.id.rv_monday);
-        final TextView monday_text = result.findViewById(R.id.monday);
+        DataSnapshot days = Objects.requireNonNull(activity).get_days();
+        final View result = inflater.inflate(R.layout.page_layout, container, false);
+        final RecyclerView couple = result.findViewById(R.id.rv_monday);
+        final TextView day_text = result.findViewById(R.id.monday);
         ImageView weekend = result.findViewById(R.id.weekend);
-        monday.setLayoutManager(new LinearLayoutManager(getActivity()));
-        if (pageNumber == 0){
-            weekend.setVisibility(View.INVISIBLE);
-            JSONObject couples;
-            JSONArray[] couple;
-            try {
-                couples = data[0].getJSONObject(0);
-                couple = new JSONArray[couples.length()];
-                for(int q = 0; q < couple.length; q++){
-                    couple[q] = couples.getJSONArray(String.valueOf(q+1));
-                }
-                RVAdapter monday_adapter = new RVAdapter(
-                        getActivity(), couple, couples.length());
-                monday.setNestedScrollingEnabled(false);
-                monday_text.setText(getResources().getString(R.string.day_monday));
-                monday.setAdapter(monday_adapter);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }else if (pageNumber == 1){
-            weekend.setVisibility(View.INVISIBLE);
-            JSONObject couples;
-            JSONArray[] couple;
-            try {
-                couples = data[1].getJSONObject(0);
-                couple = new JSONArray[couples.length()];
-                for(int q = 0; q < couple.length; q++){
-                    couple[q] = couples.getJSONArray(String.valueOf(q+1));
-                }
-                RVAdapter monday_adapter = new RVAdapter(
-                        getActivity(), couple, couples.length());
-                monday.setNestedScrollingEnabled(false);
-                monday_text.setText(getResources().getString(R.string.day_tuesday));
-                monday.setAdapter(monday_adapter);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }else if (pageNumber == 2){
-            weekend.setVisibility(View.INVISIBLE);
-            JSONObject couples;
-            JSONArray[] couple;
-            try {
-                couples = data[2].getJSONObject(0);
-                couple = new JSONArray[couples.length()];
-                for(int q = 0; q < couple.length; q++){
-                    couple[q] = couples.getJSONArray(String.valueOf(q+1));
-                }
-                RVAdapter monday_adapter = new RVAdapter(
-                        getActivity(), couple, couples.length());
-                monday.setNestedScrollingEnabled(false);
-                monday_text.setText(getResources().getString(R.string.day_wednesday));
-                monday.setAdapter(monday_adapter);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }else if (pageNumber == 3){
-            weekend.setVisibility(View.INVISIBLE);
-            JSONObject couples;
-            JSONArray[] couple;
-            try {
-                couples = data[3].getJSONObject(0);
-                couple = new JSONArray[couples.length()];
-                for(int q = 0; q < couple.length; q++){
-                    couple[q] = couples.getJSONArray(String.valueOf(q+1));
-                }
-                RVAdapter monday_adapter = new RVAdapter(
-                        getActivity(), couple, couples.length());
-                monday.setNestedScrollingEnabled(false);
-                monday_text.setText(getResources().getString(R.string.day_thursday));
-                monday.setAdapter(monday_adapter);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }else if (pageNumber == 4) {
-            weekend.setVisibility(View.INVISIBLE);
-            JSONObject couples;
-            JSONArray[] couple;
-            try {
-                couples = data[4].getJSONObject(0);
-                couple = new JSONArray[couples.length()];
-                for(int q = 0; q < couple.length; q++){
-                    couple[q] = couples.getJSONArray(String.valueOf(q+1));
-                }
-                RVAdapter monday_adapter = new RVAdapter(
-                        getActivity(), couple, couples.length());
-                monday.setNestedScrollingEnabled(false);
-                monday_text.setText(getResources().getString(R.string.day_friday));
-                monday.setAdapter(monday_adapter);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }else if (pageNumber == 5){
-            monday_text.setText("Ну и нахера ты сюда зашел(шла), иди бухай, будь студентом");
+        couple.setLayoutManager(new LinearLayoutManager(getActivity()));
+        if (pageNumber == 1) {
+            WeekRVAdapter adapter = new WeekRVAdapter(getActivity(), days.child("monday"), days.child("monday").getChildrenCount());
+            day_text.setText(getResources().getString(R.string.day_monday));
+            couple.setAdapter(adapter);
+        } else if (pageNumber == 2) {
+            WeekRVAdapter adapter = new WeekRVAdapter(getActivity(), days.child("tuesday"), days.child("tuesday").getChildrenCount());
+            day_text.setText(getResources().getString(R.string.day_tuesday));
+            couple.setAdapter(adapter);
+        } else if (pageNumber == 3) {
+            WeekRVAdapter adapter = new WeekRVAdapter(getActivity(), days.child("wednesday"), days.child("wednesday").getChildrenCount());
+            day_text.setText(getResources().getString(R.string.day_wednesday));
+            couple.setAdapter(adapter);
+        } else if (pageNumber == 4) {
+            WeekRVAdapter adapter = new WeekRVAdapter(getActivity(), days.child("thursday"), days.child("thursday").getChildrenCount());
+            day_text.setText(getResources().getString(R.string.day_thursday));
+            couple.setAdapter(adapter);
+        } else if (pageNumber == 5) {
+            WeekRVAdapter adapter = new WeekRVAdapter(getActivity(), days.child("friday"), days.child("friday").getChildrenCount());
+            day_text.setText(getResources().getString(R.string.day_friday));
+            couple.setAdapter(adapter);
+        } else if (pageNumber == 0) {
+            day_text.setText("Ну и нахера ты сюда зашел(шла), иди бухай, будь студентом");
             weekend.setVisibility(View.VISIBLE);
         }
         return result;
