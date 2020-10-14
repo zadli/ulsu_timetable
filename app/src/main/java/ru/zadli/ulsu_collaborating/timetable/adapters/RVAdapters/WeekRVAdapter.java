@@ -1,4 +1,4 @@
-package ru.zadli.ulsu_collaborating.timetable.adapters;
+package ru.zadli.ulsu_collaborating.timetable.adapters.RVAdapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -18,7 +18,7 @@ import com.google.firebase.database.DataSnapshot;
 
 import java.util.Objects;
 
-import ru.zadli.ulsu_collaborating.timetable.CoupleActivity;
+import ru.zadli.ulsu_collaborating.timetable.activities.CoupleActivity;
 import ru.zadli.ulsu_collaborating.timetable.R;
 
 public class WeekRVAdapter extends RecyclerView.Adapter<WeekRVAdapter.ViewHolder> {

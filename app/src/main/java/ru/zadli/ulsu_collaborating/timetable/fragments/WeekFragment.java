@@ -15,9 +15,9 @@ import com.google.firebase.database.DataSnapshot;
 
 import java.util.Objects;
 
-import ru.zadli.ulsu_collaborating.timetable.MainActivity;
+import ru.zadli.ulsu_collaborating.timetable.activities.MainActivity;
 import ru.zadli.ulsu_collaborating.timetable.R;
-import ru.zadli.ulsu_collaborating.timetable.adapters.WeekRVAdapter;
+import ru.zadli.ulsu_collaborating.timetable.adapters.RVAdapters.WeekRVAdapter;
 
 public class WeekFragment extends Fragment {
 
@@ -46,34 +46,24 @@ public class WeekFragment extends Fragment {
                              Bundle savedInstanceState) {
         MainActivity activity = (MainActivity) getActivity();
         DataSnapshot days = Objects.requireNonNull(activity).get_days();
-        final View result = inflater.inflate(R.layout.page_layout, container, false);
-        final RecyclerView couple = result.findViewById(R.id.rv_monday);
-        final TextView day_text = result.findViewById(R.id.monday);
+        View result = inflater.inflate(R.layout.week_layout, container, false);
+        RecyclerView couple = result.findViewById(R.id.rv_week);
+        TextView day_text = result.findViewById(R.id.week_text);
         ImageView weekend = result.findViewById(R.id.weekend);
         couple.setLayoutManager(new LinearLayoutManager(getActivity()));
-        if (pageNumber == 1) {
-            WeekRVAdapter adapter = new WeekRVAdapter(getActivity(), days.child("monday"), days.child("monday").getChildrenCount());
-            day_text.setText(getResources().getString(R.string.day_monday));
-            couple.setAdapter(adapter);
-        } else if (pageNumber == 2) {
-            WeekRVAdapter adapter = new WeekRVAdapter(getActivity(), days.child("tuesday"), days.child("tuesday").getChildrenCount());
-            day_text.setText(getResources().getString(R.string.day_tuesday));
-            couple.setAdapter(adapter);
-        } else if (pageNumber == 3) {
-            WeekRVAdapter adapter = new WeekRVAdapter(getActivity(), days.child("wednesday"), days.child("wednesday").getChildrenCount());
-            day_text.setText(getResources().getString(R.string.day_wednesday));
-            couple.setAdapter(adapter);
-        } else if (pageNumber == 4) {
-            WeekRVAdapter adapter = new WeekRVAdapter(getActivity(), days.child("thursday"), days.child("thursday").getChildrenCount());
-            day_text.setText(getResources().getString(R.string.day_thursday));
-            couple.setAdapter(adapter);
-        } else if (pageNumber == 5) {
-            WeekRVAdapter adapter = new WeekRVAdapter(getActivity(), days.child("friday"), days.child("friday").getChildrenCount());
-            day_text.setText(getResources().getString(R.string.day_friday));
-            couple.setAdapter(adapter);
-        } else if (pageNumber == 0) {
-            day_text.setText("Ну и нахера ты сюда зашел(шла), иди бухай, будь студентом");
-            weekend.setVisibility(View.VISIBLE);
+        String[] days_array = getResources().getStringArray(R.array.days);
+        String[] days_view_array = getResources().getStringArray(R.array.days_view);
+        for (int i = 0; i < 6; i++){
+            if (pageNumber == i){
+                if(pageNumber == 0){
+                    day_text.setText(days_view_array[i]);
+                    weekend.setVisibility(View.VISIBLE);
+                }else{
+                    WeekRVAdapter adapter = new WeekRVAdapter(getActivity(), days.child(days_array[i]), days.child(days_array[i]).getChildrenCount());
+                    day_text.setText(days_view_array[i]);
+                    couple.setAdapter(adapter);
+                }
+            }
         }
         return result;
     }

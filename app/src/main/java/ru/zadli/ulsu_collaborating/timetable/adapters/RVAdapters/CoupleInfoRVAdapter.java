@@ -1,9 +1,8 @@
-package ru.zadli.ulsu_collaborating.timetable.adapters;
+package ru.zadli.ulsu_collaborating.timetable.adapters.RVAdapters;
 
 import android.content.Context;
 import android.content.Intent;
 import android.provider.AlarmClock;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +11,6 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import ru.zadli.ulsu_collaborating.timetable.CoupleActivity;
-import ru.zadli.ulsu_collaborating.timetable.MainActivity;
 import ru.zadli.ulsu_collaborating.timetable.R;
 
 public class CoupleInfoRVAdapter  extends RecyclerView.Adapter<CoupleInfoRVAdapter.ViewHolder> {

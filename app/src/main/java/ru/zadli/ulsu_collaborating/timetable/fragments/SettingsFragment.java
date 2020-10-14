@@ -1,6 +1,5 @@
 package ru.zadli.ulsu_collaborating.timetable.fragments;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,11 +10,10 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import ru.zadli.ulsu_collaborating.timetable.R;
-import ru.zadli.ulsu_collaborating.timetable.adapters.SettingsRVAdapter;
+import ru.zadli.ulsu_collaborating.timetable.adapters.RVAdapters.SettingsRVAdapter;
 
 public class SettingsFragment extends Fragment {
 
-    private int pageNumber;
 
     public SettingsFragment() {
     }
@@ -31,22 +29,18 @@ public class SettingsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        pageNumber = getArguments() != null ? getArguments().getInt("num") : 1;
 
     }
 
-    @SuppressLint("SetTextI18n")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View result = inflater.inflate(R.layout.settings_layout, container, false);
         final RecyclerView settings_rv = result.findViewById(R.id.rv_settings);
         settings_rv.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        if (pageNumber == 0) {
-            SettingsRVAdapter adapter = new SettingsRVAdapter(
-                    getActivity());
-            settings_rv.setAdapter(adapter);
-        }
+        SettingsRVAdapter adapter = new SettingsRVAdapter(getActivity());
+        settings_rv.setAdapter(adapter);
+
         return result;
     }
 }

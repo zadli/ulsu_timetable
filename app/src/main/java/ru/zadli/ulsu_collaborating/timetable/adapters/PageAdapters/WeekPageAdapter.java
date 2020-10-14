@@ -1,28 +1,27 @@
-package ru.zadli.ulsu_collaborating.timetable.adapters;
+package ru.zadli.ulsu_collaborating.timetable.adapters.PageAdapters;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import ru.zadli.ulsu_collaborating.timetable.fragments.SettingsFragment;
+import ru.zadli.ulsu_collaborating.timetable.fragments.WeekFragment;
 
+public class WeekPageAdapter extends FragmentPagerAdapter {
 
-public class SettingsPageAdapter extends FragmentPagerAdapter {
-
-    public SettingsPageAdapter(@NonNull FragmentManager fm, int behavior) {
+    public WeekPageAdapter(@NonNull FragmentManager fm, int behavior) {
         super(fm, behavior);
     }
 
     @Override
     public int getCount() {
-        return (1);
+        return (6);
     }
 
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        return (SettingsFragment.newInstance(position));
+        return (WeekFragment.newInstance(position));
     }
 
 }

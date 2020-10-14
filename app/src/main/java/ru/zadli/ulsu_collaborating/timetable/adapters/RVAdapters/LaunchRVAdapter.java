@@ -1,4 +1,4 @@
-package ru.zadli.ulsu_collaborating.timetable.adapters;
+package ru.zadli.ulsu_collaborating.timetable.adapters.RVAdapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,11 +14,11 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import ru.zadli.ulsu_collaborating.timetable.MainActivity;
+import ru.zadli.ulsu_collaborating.timetable.activities.MainActivity;
 import ru.zadli.ulsu_collaborating.timetable.R;
 
 public class LaunchRVAdapter extends RecyclerView.Adapter<LaunchRVAdapter.ViewHolder> {
-    int[] myImageList = new int[]{R.drawable.first_week, R.drawable.second_week, R.drawable.events, R.drawable.settings};
+    int[] myImageList = new int[]{R.drawable.first_week, R.drawable.second_week, R.drawable.weather, R.drawable.settings, R.drawable.studens_phone_numbers};
     Context context;
     int anim = 0;
 
@@ -29,7 +29,7 @@ public class LaunchRVAdapter extends RecyclerView.Adapter<LaunchRVAdapter.ViewHo
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new LaunchRVAdapter.ViewHolder(LayoutInflater.from(context).inflate(R.layout.grid_layout, parent, false));
+        return new LaunchRVAdapter.ViewHolder(LayoutInflater.from(context).inflate(R.layout.launch_rv_layout, parent, false));
 
     }
 

@@ -1,4 +1,4 @@
-package ru.zadli.ulsu_collaborating.timetable.adapters;
+package ru.zadli.ulsu_collaborating.timetable.adapters.RVAdapters;
 
 import android.content.ComponentName;
 import android.content.Context;
