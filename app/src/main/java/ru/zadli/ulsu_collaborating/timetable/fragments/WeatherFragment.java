@@ -31,6 +31,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Objects;
+
 import ru.zadli.ulsu_collaborating.timetable.R;
 import ru.zadli.ulsu_collaborating.timetable.adapters.RVAdapters.WeatherRVAdapter;
 
@@ -60,10 +62,9 @@ public class WeatherFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View result = inflater.inflate(R.layout.weather_layout, container, false);
         final RecyclerView weather_rv = result.findViewById(R.id.rv_weather);
-        getActivity().setTitle("Погода");
-        Volley.newRequestQueue(getActivity()) //Парсим погоду
+        Volley.newRequestQueue(Objects.requireNonNull(getActivity())) //Парсим погоду
                 .add(new JsonObjectRequest(GET,
-                                "https://api.openweathermap.org/data/2.5/onecall?lat=54.316667&lon=48.366667&units=metric&appid=7460a393d941c2dcc3666c20ca581223",
+                                "https://api.openweathermap.org/data/2.5/onecall?lat=54.316667&lon=48.366667&units=metric&appid=7460a393d941c2dcc3666c20ca581223&lang=ru",
                                 null,
                                 new Response.Listener<JSONObject>() {
                                     @SuppressLint("SetTextI18n")
@@ -72,7 +73,7 @@ public class WeatherFragment extends Fragment {
                                         try {
                                             JSONArray hourly = response.getJSONArray("hourly");
                                             JSONObject[] hour = new JSONObject[48];
-                                            for (int i = 0; i<48;i++){
+                                            for (int i = 0; i < 48; i++) {
                                                 hour[i] = hourly.getJSONObject(i);
                                             }
                                             weather_rv.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -90,16 +91,6 @@ public class WeatherFragment extends Fragment {
                         })
                 );
         return result;
-    }
-    private static class Rectangle extends View {
-
-        public Rectangle(Context context) {
-            super(context);
-        }
-        @Override
-        public void onDraw(Canvas canvas) {
-
-        }
     }
 }
 

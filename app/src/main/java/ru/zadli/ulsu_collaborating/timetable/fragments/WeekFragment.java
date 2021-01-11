@@ -48,7 +48,7 @@ public class WeekFragment extends Fragment {
         DataSnapshot days = Objects.requireNonNull(activity).get_days();
         View result = inflater.inflate(R.layout.week_layout, container, false);
         RecyclerView couple = result.findViewById(R.id.rv_week);
-        TextView day_text = result.findViewById(R.id.week_text);
+        TextView day_text = result.findViewById(R.id.text_week);
         ImageView weekend = result.findViewById(R.id.weekend);
         couple.setLayoutManager(new LinearLayoutManager(getActivity()));
         String[] days_array = getResources().getStringArray(R.array.days);

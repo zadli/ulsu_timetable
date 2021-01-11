@@ -31,7 +31,7 @@
             tools:ignore="UselessParent">
 
             <TextView
-                android:id="@+id/week_text"
+                android:id="@+id/text_week"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
@@ -42,7 +42,7 @@
                 android:id="@+id/rv_week"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/week_text"
+                android:layout_below="@id/text_week"
                 tools:layout_editor_absoluteX="1dp"
                 tools:layout_editor_absoluteY="1dp" />
         </RelativeLayout>

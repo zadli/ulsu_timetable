@@ -1,27 +1,32 @@
 package ru.zadli.ulsu_collaborating.timetable.activities;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Calendar;
-import java.util.Objects;
-import java.util.Random;
+import java.util.HashMap;
+import java.util.Map;
 
 import ru.zadli.ulsu_collaborating.timetable.R;
 import ru.zadli.ulsu_collaborating.timetable.adapters.PageAdapters.ContactsPageAdapter;
@@ -29,9 +34,12 @@ import ru.zadli.ulsu_collaborating.timetable.adapters.PageAdapters.SettingsPageA
 import ru.zadli.ulsu_collaborating.timetable.adapters.PageAdapters.WeatherPageAdapter;
 import ru.zadli.ulsu_collaborating.timetable.adapters.PageAdapters.WeekPageAdapter;
 
+import static com.android.volley.Request.Method.GET;
+
 public class MainActivity extends AppCompatActivity {
     DataSnapshot days;
     DataSnapshot students_contacts;
+    JSONArray audios;
     ViewPager pager;
     ProgressBar loading_bar;
 
@@ -92,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
         } else if (position == 2) {
             loading_bar.setVisibility(View.GONE);
+            setTitle("Погода");
             pager.setPageMargin(1000);
             pager.setAdapter(new WeatherPageAdapter(getSupportFragmentManager(), WeatherPageAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT));
 
@@ -112,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+
     }
 
     public DataSnapshot get_days() {
@@ -120,5 +130,9 @@ public class MainActivity extends AppCompatActivity {
 
     public DataSnapshot get_students_contacts() {
         return students_contacts;
+    }
+
+    public JSONArray get_audios() {
+        return audios;
     }
 }

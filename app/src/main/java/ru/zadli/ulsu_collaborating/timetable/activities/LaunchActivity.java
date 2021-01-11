@@ -3,6 +3,7 @@ package ru.zadli.ulsu_collaborating.timetable.activities;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -165,6 +166,9 @@ public class LaunchActivity extends AppCompatActivity {
                 firebaseAuthWithGoogle(Objects.requireNonNull(account).getIdToken());
 
             } catch (ApiException e) {
+                Log.d("err", String.valueOf(e));
+                Toast.makeText(LaunchActivity.this, String.valueOf(e), Toast.LENGTH_SHORT).show();
+
                 // Google Sign In failed, update UI appropriately
             }
         }

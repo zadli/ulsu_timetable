@@ -17,7 +17,6 @@ import java.util.Objects;
 import ru.zadli.ulsu_collaborating.timetable.R;
 import ru.zadli.ulsu_collaborating.timetable.activities.MainActivity;
 import ru.zadli.ulsu_collaborating.timetable.adapters.RVAdapters.ContactsRVAdapter;
-import ru.zadli.ulsu_collaborating.timetable.adapters.RVAdapters.SettingsRVAdapter;
 
 public class ContactsFragment extends Fragment {
 
